@@ -1,26 +1,80 @@
 import { useState } from "react";
 
-const gifts = [
-    "CPU i9",
-    "Ram 32GB RGB",
-    "RGB Keyboard",
-    "Tai nghe Sony",
-    "Chuột Logitech",
+// Response from API
+const courses = [
+    {
+        id: 1,
+        name: "HTML CSS",
+    },
+    {
+        id: 2,
+        name: "Javascript",
+    },
+    {
+        id: 3,
+        name: "ReactJS",
+    },
 ];
 
 function App() {
-    const [gift, setGift] = useState();
+    // input text, email
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
 
-    const randomGift = () => {
-        const index = Math.floor(Math.random() * gifts.length);
+    //input radio, checkbox
+    const [radioChecked, setRadioChecked] = useState(2);
+    const [checkboxChecked, setCheckboxChecked] = useState([]);
 
-        setGift(gifts[index]);
+    const handleCheckbox = (id) => {
+        setCheckboxChecked((pre) => {
+            const isCheck = checkboxChecked.includes(id);
+
+            if (isCheck) {
+                // Uncheck
+                return checkboxChecked.filter((item) => item !== id);
+            } else {
+                // Check
+                return [...pre, id];
+            }
+        });
+    };
+
+    const handleSubmit = () => {
+        // Call API
+        console.log({ name, email, radioChecked, checkboxChecked });
     };
 
     return (
         <div style={{ padding: 32 }}>
-            <h1>{gift || "Chưa có phần thưởng"}</h1>
-            <button onClick={randomGift}>Lấy thưởng</button>
+            <p>Name</p>
+            <input value={name} onChange={(e) => setName(e.target.value)} />
+            <p>Email</p>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} />
+            {/* Radio */}
+            <p>Radio</p>
+            {courses.map((course) => (
+                <div key={course.id}>
+                    <input
+                        type="radio"
+                        checked={radioChecked === course.id}
+                        onChange={() => setRadioChecked(course.id)}
+                    />
+                    {course.name}
+                </div>
+            ))}
+            {/* Checkbox */}
+            <p>Checkbox</p>
+            {courses.map((course) => (
+                <div key={course.id}>
+                    <input
+                        type="checkbox"
+                        checked={checkboxChecked.includes(course.id)}
+                        onChange={() => handleCheckbox(course.id)}
+                    />
+                    {course.name}
+                </div>
+            ))}
+            <button onClick={handleSubmit}>Register</button>
         </div>
     );
 }
