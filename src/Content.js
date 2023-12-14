@@ -1,9 +1,13 @@
 import { memo } from "react";
 
-function Content({ count2 }) {
+function Content({ onIncrease }) {
     console.log("re-render");
-
-    return <h1>Hello ae - {count2}</h1>;
+    return (
+        <>
+            <h1>Hello ae</h1>
+            <button onClick={onIncrease}>Click me!</button>
+        </>
+    );
 }
 
 export default memo(Content);
