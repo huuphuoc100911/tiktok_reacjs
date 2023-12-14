@@ -25,18 +25,14 @@ function Content() {
 
     useEffect(() => {
         const handleScroll = () => {
-            // if (window.scrollY >= 200) {
-            //     // Show
-            // } else {
-            //     // Hide
-            //     setShowGoToTop(false);
-            // }
             setShowGoToTop(window.scrollY >= 200);
         };
         window.addEventListener("scroll", handleScroll);
 
         //Cleanup function
-        return window.removeEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     return (
