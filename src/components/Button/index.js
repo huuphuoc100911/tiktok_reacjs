@@ -1,12 +1,13 @@
 import clsx from "clsx";
-import styles from "./Button.module.css";
+import styles from "./Button.module.scss";
 
 // classnames
 // clsx
 
-function Button({ primary }) {
+function Button({ primary, disabled }) {
     const classes = clsx(styles.btn, "d-flex", {
         [styles.primary]: primary,
+        [styles.disabled]: disabled,
     });
 
     return (
