@@ -1,7 +1,5 @@
 import { useStore, actions } from "./store";
 
-import TodoApp from "./Todo/";
-
 function App() {
     const [state, dispatch] = useStore();
     const { todoInput, todos, todoEditIndex } = state;
@@ -61,7 +59,6 @@ function App() {
                 </ul>
             </div>
             <hr />
-            <TodoApp />
         </div>
     );
 }
