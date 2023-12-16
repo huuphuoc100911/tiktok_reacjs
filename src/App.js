@@ -1,24 +1,11 @@
-import Heading from "./components/Heading";
-import Paragraph from "./components/Paragraph";
 import GlobalStyles from "./components/GlobalStyles";
 
 function App() {
     return (
         <GlobalStyles>
-            <div style={{ padding: "20px" }}>
-                <Heading />
-                <Paragraph />
-            </div>
-            <div className="d-flex">
-                <div>Item 1</div>
-                <div>Item 2</div>
-            </div>
+            <div style={{ padding: "20px" }}></div>
         </GlobalStyles>
     );
 }
 
 export default App;
-
-// Development: npm start => CSS internal
-
-// Production: npm run build => CSS external
